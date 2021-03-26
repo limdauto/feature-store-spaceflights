@@ -25,6 +25,7 @@
 #
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import time
 import pandas as pd
 
 
@@ -71,6 +72,15 @@ def preprocess_shuttles(shuttles: pd.DataFrame) -> pd.DataFrame:
     shuttles["moon_clearance_complete"] = _is_true(shuttles["moon_clearance_complete"])
     shuttles["price"] = _parse_money(shuttles["price"])
     return shuttles
+
+
+def preprocess_reviews(reviews: pd.DataFrame):
+    current_time_sec = int(round(time.time()))
+    reviews["event_time"] = pd.Series(
+        [current_time_sec] * len(reviews), dtype="float64"
+    )
+    reviews["review_id"] = reviews.index + 1
+    return reviews
 
 
 def create_master_table(
