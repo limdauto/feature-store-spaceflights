@@ -69,7 +69,7 @@ preprocessed_shuttles:
 preprocessed_reviews:
   type: feature_store_spaceflights.datasets.sagemaker_feature_store.FeatureGroupDataSet
   name: reviews-feature-group-dataset
-  s3_uri: s3://sagemaker-eu-west-1-674444584527/demo-kedro-feature-store
+  s3_uri: s3://${AWS_S3_FEATURE_STORE_BUCKET}/demo-kedro-feature-store
   description: Spacesflights shuttles reviews
   record_identifier_name: review_id
   event_time_name: event_time
